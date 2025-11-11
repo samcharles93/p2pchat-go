@@ -1,0 +1,20 @@
+# Private keys - NEVER commit these!
+keys/
+*.pem
+
+# User data directories
+data/
+downloads/
+voice_recordings/
+
+# Build artifacts
+*.exe
+p2pchat
+
+# Go build cache
+*.test
+*.out
+
+# Temporary files
+*.tmp
+*.log
