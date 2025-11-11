@@ -374,10 +374,10 @@ func (ui *UI) renderPeerPanel() string {
 	content.WriteString(strings.Repeat("─", 28) + "\n")
 
 	if len(ui.peers) == 0 {
-		content.WriteString(mutedColor.Render("  No peers connected\n"))
+		content.WriteString(messagePanelStyle.Render("  No peers connected\n"))
 		content.WriteString("\n")
-		content.WriteString(mutedColor.Render("  Use /connect <addr>\n"))
-		content.WriteString(mutedColor.Render("  to add peers\n"))
+		content.WriteString(messagePanelStyle.Render("  Use /connect <addr>\n"))
+		content.WriteString(messagePanelStyle.Render("  to add peers\n"))
 	} else {
 		for i, peer := range ui.peers {
 			peerStatus := peerConnectedStyle.Render("●")

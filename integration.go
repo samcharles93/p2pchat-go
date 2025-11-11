@@ -339,10 +339,14 @@ func (en *EnhancedNode) showEnhancedHelp() {
 func (en *EnhancedNode) StartEnhanced() {
 	log.Printf("Starting enhanced P2P chat node %s", en.ID)
 	log.Printf("Features: 🔒 Encryption | 📁 File Sharing | 🎙️ Voice Messages")
+	fmt.Println("Commands: /help for help, /quit to exit")
 
 	// Start the base node
 	en.wg.Add(1)
 	go en.handleServer()
+
+	en.wg.Add(1)
+	go en.handleCLI()
 
 	en.wg.Add(1)
 	go en.gossipPeerList()
@@ -350,6 +354,9 @@ func (en *EnhancedNode) StartEnhanced() {
 	if en.discoveryConn != nil {
 		en.wg.Add(1)
 		go en.handleDiscovery()
+
+		en.wg.Add(1)
+		go en.announcePresence()
 	}
 
 	// Start message processing

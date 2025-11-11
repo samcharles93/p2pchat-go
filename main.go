@@ -30,12 +30,12 @@ func main() {
 	flag.StringVar(&listenAddr, "listen", ":0", "address to listen on (:0 = auto-assign port)")
 	flag.Var(&peerAddrs, "peer", "peer address to connect to (can be specified multiple times)")
 	flag.BoolVar(&disableDiscovery, "no-discovery", false, "disable auto-discovery")
-	flag.BoolVar(&useTUI, "tui", false, "use beautiful TUI interface (deprecated)")
-	flag.BoolVar(&useGUI, "gui", true, "use cross-platform GUI (recommended)")
+	flag.BoolVar(&useTUI, "tui", false, "use beautiful TUI interface")
+	flag.BoolVar(&useGUI, "gui", false, "use cross-platform GUI (not yet implemented)")
 	flag.Parse()
 
-	// Create enhanced node with GUI support
-	node, err := NewNodeWithGUI(listenAddr, disableDiscovery)
+	// Create enhanced node
+	node, err := NewEnhancedNode(listenAddr, disableDiscovery)
 	if err != nil {
 		log.Fatalf("Failed to create enhanced node: %v", err)
 	}
